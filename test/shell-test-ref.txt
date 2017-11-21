@@ -3,7 +3,7 @@ $ dx --dex --output build/source.dex source/build/libs/source.jar
 $ dx --dex --output build/patch.dex patch/build/libs/patch.jar
 
 $ dexpatcher --help
-DexPatcher Version 1.5.0 by Lanchon
+DexPatcher Version 1.5.1-barrier by Lanchon
            https://dexpatcher.github.io/
 usage: dexpatcher [<option> ...] [--output <patched-dex-or-dir>]
                   <source-dex-apk-or-dir> [<patch-dex-apk-or-dir> ...]
@@ -30,121 +30,51 @@ usage: dexpatcher [<option> ...] [--output <patched-dex-or-dir>]
 
 $ dexpatcher build/source.dex build/patch.dex --output build/patched.dex --debug
 info: read 'build/source.dex'
-debug: read 'build/source.dex': 25 types
+debug: read 'build/source.dex': 14 types
 debug: read 'build/source.dex': dex version '035'
 info: read 'build/patch.dex'
-debug: read 'build/patch.dex': 24 types
+debug: read 'build/patch.dex': 13 types
 debug: read 'build/patch.dex': dex version '035'
-debug: type 'test.Main$A': (Main.java:0): replace
-debug: type 'test.Main$Abstract': (Main.java:0): ignore
-debug: type 'test.Main$B': (Main.java:0): edit
-debug: type 'test.Main$B': static field 'staticField:int': (Main.java:0): add
-debug: type 'test.Main$B': instance field 'instanceField:int': (Main.java:0): add
-debug: type 'test.Main$B': instance field 'privateKey:java.lang.String': (Main.java:0): edit
-info: type 'test.Main$B': instance field 'privateKey:java.lang.String': (Main.java:0): 'private' modifier changed to 'public' in edited field
-debug: type 'test.Main$B': direct method '<clinit>():void': (Main.java:100): add
-debug: type 'test.Main$B': direct method '<init>():void': (Main.java:143): ignore
-debug: type 'test.Main$B': direct method 'directMethod():void': (Main.java:152): replace
-debug: type 'test.Main$B': direct method 'privateStaticMethod(int):void': (Main.java:112): edit
-info: type 'test.Main$B': direct method 'privateStaticMethod(int):void': (Main.java:112): 'private' modifier changed to 'public' in edited method
-debug: type 'test.Main$B': virtual method 'addedMethod():void': (Main.java:147): add
-debug: type 'test.Main$B': virtual method 'appendTestMethod(java.lang.String):void': (Main.java:209): append
-debug: type 'test.Main$B': virtual method 'prependTestMethod(java.lang.String):void': (Main.java:203): prepend
-debug: type 'test.Main$B': virtual method 'source_virtualMethod(java.lang.String):void': (Main.java:161): edit
-debug: type 'test.Main$B': virtual method 'source_virtualMethod(java.lang.String):void': target 'virtualMethod': (Main.java:161): 'public' modifier changed to 'protected' in renamed method
-debug: type 'test.Main$B': virtual method 'virtualMethod(java.lang.String):void': (Main.java:166): add
-debug: type 'test.Main$B': virtual method 'wrapTestMethod(java.lang.String):void': (Main.java:185): wrap
-debug: type 'test.Main$Base': (Main.java:0): ignore
-debug: type 'test.Main$C': (Main.java:0): edit
-debug: type 'test.Main$C': static field 'patchStaticField:int': (Main.java:0): add
-warning: type 'test.Main$C': static field 'patchStaticField:int': (Main.java:0): static field will not be initialized as specified in patch because code of static constructor of class is being discarded
-debug: type 'test.Main$C': static field 'redefinedSourceStaticField:int': (Main.java:0): edit
-warning: type 'test.Main$C': static field 'redefinedSourceStaticField:int': (Main.java:0): static field will not be initialized as specified in patch because code of static constructor of class is being discarded
-debug: type 'test.Main$C': instance field 'patchField:int': (Main.java:0): add
-debug: type 'test.Main$C': instance field 'redefinedSourceField:int': (Main.java:0): edit
-debug: type 'test.Main$C': direct method '<clinit>():void': (Main.java:245): ignore
-debug: type 'test.Main$C': direct method '<init>():void': (Main.java:267): ignore
-debug: type 'test.Main$C': virtual method 'print():void': (Main.java:275): append
-debug: type 'test.Main$Interface': (Main.java:0): ignore
-debug: type 'test.Main$Concrete1': (Main.java:0): edit
-info: type 'test.Main$Concrete1': direct method '<init>():void': (Main.java:509): implicit ignore of trivial default constructor
-debug: type 'test.Main$Concrete1': direct method '<init>():void': (Main.java:509): ignore
-debug: type 'test.Main$Concrete1': virtual method 'abstractMethod():void': (Main.java:0): ignore
-debug: type 'test.Main$Concrete1': virtual method 'interfaceMethod():void': (Main.java:518): ignore
-debug: type 'test.Main$Concrete1': virtual method 'method():void': (Main.java:512): replace
-debug: type 'test.Main$Concrete2': (Main.java:0): edit
-info: type 'test.Main$Concrete2': direct method '<init>():void': (Main.java:546): implicit ignore of trivial default constructor
-debug: type 'test.Main$Concrete2': direct method '<init>():void': (Main.java:546): ignore
-debug: type 'test.Main$Concrete2': virtual method 'method():void': (Main.java:549): replace
-debug: type 'test.Main$Concrete3': (Main.java:0): edit
-info: type 'test.Main$Concrete3': direct method '<init>():void': (Main.java:557): implicit ignore of trivial default constructor
-debug: type 'test.Main$Concrete3': direct method '<init>():void': (Main.java:557): ignore
-debug: type 'test.Main$Concrete3': virtual method 'method():void': (Main.java:560): replace
-debug: type 'test.Main$CrossClassA': (Main.java:0): add
-debug: type 'test.Main$CrossClassAHelper': (Main.java:0): edit
-info: type 'test.Main$CrossClassAHelper': direct method '<init>():void': (Main.java:584): implicit ignore of trivial default constructor
-debug: type 'test.Main$CrossClassAHelper': direct method '<init>():void': (Main.java:584): ignore
-debug: type 'test.Main$CrossClassAHelper': direct method 'help2(test.Main$source_CrossClassA):void': (Main.java:586): add
-debug: type 'test.Main$CrossClassBPatcher': (Main.java:0): edit
-info: type 'test.Main$CrossClassBPatcher': target 'test.Main$CrossClassB': direct method '<init>():void': (Main.java:616): implicit ignore of trivial default constructor
-debug: type 'test.Main$CrossClassBPatcher': target 'test.Main$CrossClassB': direct method '<init>():void': (Main.java:616): ignore
-debug: type 'test.Main$CrossClassBPatcher': target 'test.Main$CrossClassB': virtual method 'go():void': (Main.java:619): wrap
-debug: type 'test.Main$CrossClassCPatcher': (Main.java:0): replace
-debug: type 'test.Main$D': (Main.java:0): edit
-debug: type 'test.Main$D': static field 'patchStaticField:int': (Main.java:0): add
-debug: type 'test.Main$D': static field 'redefinedSourceStaticField:int': (Main.java:0): edit
-debug: type 'test.Main$D': instance field 'patchField:int': (Main.java:0): add
-debug: type 'test.Main$D': instance field 'redefinedSourceField:int': (Main.java:0): edit
-debug: type 'test.Main$D': direct method '<clinit>():void': (Main.java:286): replace
-debug: type 'test.Main$D': direct method '<init>():void': (Main.java:312): replace
-debug: type 'test.Main$D': virtual method 'print():void': (Main.java:321): append
-debug: type 'test.Main$Derived': (Main.java:0): edit
-info: type 'test.Main$Derived': direct method '<init>():void': (Main.java:223): default ignore
-debug: type 'test.Main$Derived': direct method '<init>():void': (Main.java:223): ignore
-debug: type 'test.Main$Derived': virtual method 'method():void': (Main.java:233): add
-debug: type 'test.Main$Derived': virtual method 'source_method():void': (Main.java:230): edit
-debug: type 'test.Main$Derived': virtual method 'source_method():void': target 'method': (Main.java:230): 'public' modifier changed to 'protected' in renamed method
-debug: type 'test.Main$E': (Main.java:0): edit
-debug: type 'test.Main$E': static field 'patchStaticField:int': (Main.java:0): add
-debug: type 'test.Main$E': static field 'redefinedSourceStaticField:int': (Main.java:0): edit
-debug: type 'test.Main$E': instance field 'patchField:int': (Main.java:0): add
-debug: type 'test.Main$E': instance field 'redefinedSourceField:int': (Main.java:0): edit
-info: type 'test.Main$E': direct method '<clinit>():void': (Main.java:334): default add
-debug: type 'test.Main$E': direct method '<clinit>():void': (Main.java:334): add
-debug: type 'test.Main$E': direct method '<init>(java.lang.String):void': (Main.java:386): add
-debug: type 'test.Main$E': direct method '<init>(java.lang.String, java.lang.Void):void': (Main.java:373): edit
-debug: type 'test.Main$E': direct method '<init>(java.lang.String, java.lang.Void):void': target '<init>(java.lang.String):void': (Main.java:373): 'public' modifier changed to 'private' in renamed method
-debug: type 'test.Main$E': direct method 'source_static():void': (Main.java:345): edit
-debug: type 'test.Main$E': direct method 'source_static():void': target '<clinit>': (Main.java:345): 'private' modifier added to renamed method
-debug: type 'test.Main$E': direct method 'source_static():void': target '<clinit>': (Main.java:345): 'constructor' modifier removed from renamed method
-debug: type 'test.Main$E': virtual method 'print():void': (Main.java:392): append
-debug: type 'test.Main$F': (Main.java:0): edit
-debug: type 'test.Main$F': static field 'patchStaticField:int': (Main.java:0): add
-debug: type 'test.Main$F': static field 'redefinedSourceStaticField:int': (Main.java:0): edit
-debug: type 'test.Main$F': instance field 'patchField:int': (Main.java:0): add
-debug: type 'test.Main$F': instance field 'redefinedSourceField:int': (Main.java:0): edit
-debug: type 'test.Main$F': direct method '<clinit>():void': (Main.java:403): append
-debug: type 'test.Main$F': direct method '<init>():void': (Main.java:423): ignore
-debug: type 'test.Main$F': virtual method 'print():void': (Main.java:431): append
-debug: type 'test.Main$G': (Main.java:0): edit
-debug: type 'test.Main$G': static field 'patchStaticField:int': (Main.java:0): add
-debug: type 'test.Main$G': static field 'redefinedSourceStaticField:int': (Main.java:0): edit
-info: type 'test.Main$G': direct method '<clinit>():void': (Main.java:450): implicit append of static constructor
-debug: type 'test.Main$G': direct method '<clinit>():void': (Main.java:450): append
-info: type 'test.Main$G': direct method '<init>():void': (Main.java:447): implicit ignore of trivial default constructor
-debug: type 'test.Main$G': direct method '<init>():void': (Main.java:447): ignore
-debug: type 'test.Main$G': virtual method 'print():void': (Main.java:461): append
-debug: type 'test.Main$H': (Main.java:0): edit
-debug: type 'test.Main$H': static field 'patchStaticField:int': (Main.java:0): add
-info: type 'test.Main$H': direct method '<clinit>():void': (Main.java:471): implicit add of static constructor
-debug: type 'test.Main$H': direct method '<clinit>():void': (Main.java:471): add
-info: type 'test.Main$H': direct method '<init>():void': (Main.java:468): implicit ignore of trivial default constructor
-debug: type 'test.Main$H': direct method '<init>():void': (Main.java:468): ignore
-debug: type 'test.Main$H': virtual method 'print():void': (Main.java:480): append
-debug: type 'test.Main$source_CrossClassA': (Main.java:0): edit
-debug: type 'test.Main$source_CrossClassA': target 'test.Main$CrossClassA': (Main.java:0): 'public' modifier removed from renamed type
-debug: type 'test.Main$source_CrossClassA': target 'test.Main$CrossClassA': direct method '<init>(java.lang.String):void': (Main.java:577): ignore
-debug: type 'test.Main$source_CrossClassA': target 'test.Main$CrossClassA': virtual method 'go():void': (Main.java:579): ignore
+debug: type 'test.Main$FieldPresence': (Main.java:0): edit
+debug: type 'test.Main$FieldPresence': instance field 'f:int': (Main.java:0): add
+info: type 'test.Main$FieldPresence': direct method '<init>():void': (Main.java:13): implicit ignore of trivial default constructor
+debug: type 'test.Main$FieldPresence': direct method '<init>():void': (Main.java:13): ignore
+debug: type 'test.Main$FieldUseBoth': (Main.java:0): edit
+debug: type 'test.Main$FieldUseBoth': instance field 'f:int': (Main.java:0): add
+debug: type 'test.Main$FieldUseBoth': direct method '<init>():void': (Main.java:33): replace
+debug: type 'test.Main$FieldUseBoth': direct method 'main(java.lang.String[]):void': (Main.java:35): append
+debug: type 'test.Main$FieldUseOne': (Main.java:0): edit
+debug: type 'test.Main$FieldUseOne': instance field 'f:int': (Main.java:0): add
+debug: type 'test.Main$FieldUseOne': direct method '<init>():void': (Main.java:23): replace
+debug: type 'test.Main$FieldUseOne': direct method 'main(java.lang.String[]):void': (Main.java:25): append
+debug: type 'test.Main$MethodPrivatePresence': (Main.java:0): edit
+info: type 'test.Main$MethodPrivatePresence': direct method '<init>():void': (Main.java:47): implicit ignore of trivial default constructor
+debug: type 'test.Main$MethodPrivatePresence': direct method '<init>():void': (Main.java:47): ignore
+debug: type 'test.Main$MethodPrivatePresence': virtual method 'm():void': (Main.java:49): add
+debug: type 'test.Main$MethodPrivateUseBoth': (Main.java:0): edit
+info: type 'test.Main$MethodPrivateUseBoth': direct method '<init>():void': (Main.java:77): implicit ignore of trivial default constructor
+debug: type 'test.Main$MethodPrivateUseBoth': direct method '<init>():void': (Main.java:77): ignore
+debug: type 'test.Main$MethodPrivateUseBoth': direct method 'main(java.lang.String[]):void': (Main.java:81): append
+debug: type 'test.Main$MethodPrivateUseBoth': virtual method 'm():void': (Main.java:79): add
+debug: type 'test.Main$MethodPrivateUseOne': (Main.java:0): edit
+info: type 'test.Main$MethodPrivateUseOne': direct method '<init>():void': (Main.java:61): implicit ignore of trivial default constructor
+debug: type 'test.Main$MethodPrivateUseOne': direct method '<init>():void': (Main.java:61): ignore
+debug: type 'test.Main$MethodPrivateUseOne': direct method 'main(java.lang.String[]):void': (Main.java:65): append
+debug: type 'test.Main$MethodPrivateUseOne': virtual method 'm():void': (Main.java:63): add
+debug: type 'test.Main$MethodStaticPresence': (Main.java:0): edit
+info: type 'test.Main$MethodStaticPresence': direct method '<init>():void': (Main.java:41): implicit ignore of trivial default constructor
+debug: type 'test.Main$MethodStaticPresence': direct method '<init>():void': (Main.java:41): ignore
+debug: type 'test.Main$MethodStaticPresence': virtual method 'm():void': (Main.java:43): add
+debug: type 'test.Main$MethodStaticUseBoth': (Main.java:0): edit
+info: type 'test.Main$MethodStaticUseBoth': direct method '<init>():void': (Main.java:69): implicit ignore of trivial default constructor
+debug: type 'test.Main$MethodStaticUseBoth': direct method '<init>():void': (Main.java:69): ignore
+debug: type 'test.Main$MethodStaticUseBoth': direct method 'main(java.lang.String[]):void': (Main.java:73): append
+debug: type 'test.Main$MethodStaticUseBoth': virtual method 'm():void': (Main.java:71): add
+debug: type 'test.Main$MethodStaticUseOne': (Main.java:0): edit
+info: type 'test.Main$MethodStaticUseOne': direct method '<init>():void': (Main.java:53): implicit ignore of trivial default constructor
+debug: type 'test.Main$MethodStaticUseOne': direct method '<init>():void': (Main.java:53): ignore
+debug: type 'test.Main$MethodStaticUseOne': direct method 'main(java.lang.String[]):void': (Main.java:57): append
+debug: type 'test.Main$MethodStaticUseOne': virtual method 'm():void': (Main.java:55): add
 debug: type 'test.Main': (Main.java:0): ignore
 debug: type 'test.info.package-info': (package-info.java:0): replace
 debug: type 'test.info.package-info': (package-info.java:0): replace package non-recursive
@@ -157,189 +87,204 @@ debug: type 'test.target.package-info': target 'test.nonrec.package-info': (pack
 debug: type 'test.target.package-info': target 'test.nonrec.package-info': (package-info.java:0): remove type 'test.nonrec.NonRec'
 info: write 'build/patched.dex'
 debug: write 'build/patched.dex': dex version '035'
-debug: write 'build/patched.dex': 24 types
-0 error(s), 2 warning(s)
+debug: write 'build/patched.dex': 12 types
+0 error(s), 0 warning(s)
 
 $ dex2jar --force --output build/patched-dex2jar.jar build/patched.dex
 dex2jar build/patched.dex -> build/patched-dex2jar.jar
 
 --- run source/build/libs/source.jar ---
-original A::<clinit>
-original A::<init>
+FieldPresence:
+main
 
-B::privateStaticMethod: 42 (private static void test.Main$B.privateStaticMethod(int))
-B::privateKey: my-key (private java.lang.String test.Main$B.privateKey)
-original B::directMethod
-original B::virtualMethod: data
-original B::wrapTestMethod: data
-original B::prependTestMethod: data
-original B::appendTestMethod: data
+FieldUseOne:
+main
 
-entering original Derived::method
-original Base::method
-exiting original Derived::method
+FieldUseBoth:
+static f: 1
 
-original C::<clinit>
-original C::<init>
-C::sourceStaticField: 100
-C::sourceField: 100
-C::redefinedSourceStaticField: 100
-C::redefinedSourceField: 100
+MethodStaticPresence:
+main
 
-original D::<clinit>
-original D::<init>
-D::sourceStaticField: 100
-D::sourceField: 100
-D::redefinedSourceStaticField: 100
-D::redefinedSourceField: 100
+MethodPrivatePresence:
+main
 
-original E::<clinit>
-original E::<init>: data
-E::sourceStaticField: 100
-E::sourceField: 100
-E::redefinedSourceStaticField: 100
-E::redefinedSourceField: 100
+MethodStaticUseOne:
+static m
 
-original F::<clinit>
-original F::<init>
-F::sourceStaticField: 100
-F::sourceField: 100
-F::redefinedSourceStaticField: 100
-F::redefinedSourceField: 100
+MethodPrivateUseOne:
+private m
 
-original G::<clinit>
-original G::<init>
-G::sourceStaticField: 100
-G::redefinedSourceStaticField: 100
+MethodStaticUseBoth:
+static m
 
-original H::<init>
+MethodPrivateUseBoth:
+private m
 
-Concrete1::interfaceMethod
-Concrete1::abstractMethod
-original Concrete1::method
-
-Concrete2::interfaceMethod
-Concrete2::abstractMethod
-original Concrete2::method
-
-Concrete3::interfaceMethod
-Concrete3::abstractMethod
-original Concrete3::method
-
-original CrossClassA::go: data (class test.Main$CrossClassA)
-original CrossClassA::help1 (class test.Main$CrossClassA)
-original CrossClassAHelper::help2(CrossClassA)
-
-original CrossClassB::go: data (class test.Main$CrossClassB)
-
-original CrossClassC::<clinit>
-original CrossClassC::<init>
 --- end source/build/libs/source.jar ---
 
 --- run build/patched-dex2jar.jar ---
-replaced A::<clinit>
-replaced A::<init>
+FieldPresence:
+java.lang.ClassFormatError: Duplicate field name&signature in class file test/Main$FieldPresence
+	at java.lang.ClassLoader.defineClass1(Native Method)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:803)
+	at java.security.SecureClassLoader.defineClass(SecureClassLoader.java:142)
+	at java.net.URLClassLoader.defineClass(URLClassLoader.java:442)
+	at java.net.URLClassLoader.access$100(URLClassLoader.java:64)
+	at java.net.URLClassLoader$1.run(URLClassLoader.java:354)
+	at java.net.URLClassLoader$1.run(URLClassLoader.java:348)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:347)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:425)
+	at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:312)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:358)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:195)
+	at test.Main.main(Unknown Source)
 
-B::privateStaticMethod: 42 (public static void test.Main$B.privateStaticMethod(int))
-B::privateKey: my-key (public java.lang.String test.Main$B.privateKey)
-replaced B::directMethod
-B::staticField: 100   <-- initialized
-B::instanceField: 0   <-- *not* initialized
-B::addedMethod
-entering replaced B::virtualMethod: data
-original B::virtualMethod: filtered data
-exiting replaced B::virtualMethod
-entering wrapper B::wrapTestMethod: data
-original B::wrapTestMethod: filtered data
-exiting wrapper B::wrapTestMethod
-prepended B::prependTestMethod: data
-original B::prependTestMethod: data
-original B::appendTestMethod: data
-appended B::appendTestMethod: data
+FieldUseOne:
+java.lang.ClassFormatError: Duplicate field name&signature in class file test/Main$FieldUseOne
+	at java.lang.ClassLoader.defineClass1(Native Method)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:803)
+	at java.security.SecureClassLoader.defineClass(SecureClassLoader.java:142)
+	at java.net.URLClassLoader.defineClass(URLClassLoader.java:442)
+	at java.net.URLClassLoader.access$100(URLClassLoader.java:64)
+	at java.net.URLClassLoader$1.run(URLClassLoader.java:354)
+	at java.net.URLClassLoader$1.run(URLClassLoader.java:348)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:347)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:425)
+	at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:312)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:358)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:195)
+	at test.Main.main(Unknown Source)
 
-entering replaced Derived::method
-entering original Derived::method
-original Base::method
-exiting original Derived::method
-exiting replaced Derived::method
+FieldUseBoth:
+java.lang.ClassFormatError: Duplicate field name&signature in class file test/Main$FieldUseBoth
+	at java.lang.ClassLoader.defineClass1(Native Method)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:803)
+	at java.security.SecureClassLoader.defineClass(SecureClassLoader.java:142)
+	at java.net.URLClassLoader.defineClass(URLClassLoader.java:442)
+	at java.net.URLClassLoader.access$100(URLClassLoader.java:64)
+	at java.net.URLClassLoader$1.run(URLClassLoader.java:354)
+	at java.net.URLClassLoader$1.run(URLClassLoader.java:348)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:347)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:425)
+	at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:312)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:358)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:195)
+	at test.Main.main(Unknown Source)
 
-original C::<clinit>
-original C::<init>
-C::sourceStaticField: 100
-C::sourceField: 100
-C::redefinedSourceStaticField: 100
-C::redefinedSourceField: 100
-C::patchStaticField: 0
-C::patchField: 0
+MethodStaticPresence:
+java.lang.ClassFormatError: Duplicate method name&signature in class file test/Main$MethodStaticPresence
+	at java.lang.ClassLoader.defineClass1(Native Method)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:803)
+	at java.security.SecureClassLoader.defineClass(SecureClassLoader.java:142)
+	at java.net.URLClassLoader.defineClass(URLClassLoader.java:442)
+	at java.net.URLClassLoader.access$100(URLClassLoader.java:64)
+	at java.net.URLClassLoader$1.run(URLClassLoader.java:354)
+	at java.net.URLClassLoader$1.run(URLClassLoader.java:348)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:347)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:425)
+	at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:312)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:358)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:195)
+	at test.Main.main(Unknown Source)
 
-replaced D::<clinit>
-replaced D::<init>
-D::sourceStaticField: 0
-D::sourceField: 0
-D::redefinedSourceStaticField: 200
-D::redefinedSourceField: 200
-D::patchStaticField: 200
-D::patchField: 200
+MethodPrivatePresence:
+java.lang.ClassFormatError: Duplicate method name&signature in class file test/Main$MethodPrivatePresence
+	at java.lang.ClassLoader.defineClass1(Native Method)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:803)
+	at java.security.SecureClassLoader.defineClass(SecureClassLoader.java:142)
+	at java.net.URLClassLoader.defineClass(URLClassLoader.java:442)
+	at java.net.URLClassLoader.access$100(URLClassLoader.java:64)
+	at java.net.URLClassLoader$1.run(URLClassLoader.java:354)
+	at java.net.URLClassLoader$1.run(URLClassLoader.java:348)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:347)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:425)
+	at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:312)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:358)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:195)
+	at test.Main.main(Unknown Source)
 
-entering replaced E::<clinit>
-original E::<clinit>
-exiting replaced E::<clinit>
-original E::<init>: filtered data
-continuing on replaced E::<init>: data
-E::sourceStaticField: 100
-E::sourceField: 100
-E::redefinedSourceStaticField: 100
-E::redefinedSourceField: 100
-E::patchStaticField: 200
-E::patchField: 0
+MethodStaticUseOne:
+java.lang.ClassFormatError: Duplicate method name&signature in class file test/Main$MethodStaticUseOne
+	at java.lang.ClassLoader.defineClass1(Native Method)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:803)
+	at java.security.SecureClassLoader.defineClass(SecureClassLoader.java:142)
+	at java.net.URLClassLoader.defineClass(URLClassLoader.java:442)
+	at java.net.URLClassLoader.access$100(URLClassLoader.java:64)
+	at java.net.URLClassLoader$1.run(URLClassLoader.java:354)
+	at java.net.URLClassLoader$1.run(URLClassLoader.java:348)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:347)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:425)
+	at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:312)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:358)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:195)
+	at test.Main.main(Unknown Source)
 
-original F::<clinit>
-appended F::<clinit>
-original F::<init>
-F::sourceStaticField: 100
-F::sourceField: 100
-F::redefinedSourceStaticField: 200
-F::redefinedSourceField: 100
-F::patchStaticField: 200
-F::patchField: 0
+MethodPrivateUseOne:
+java.lang.ClassFormatError: Duplicate method name&signature in class file test/Main$MethodPrivateUseOne
+	at java.lang.ClassLoader.defineClass1(Native Method)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:803)
+	at java.security.SecureClassLoader.defineClass(SecureClassLoader.java:142)
+	at java.net.URLClassLoader.defineClass(URLClassLoader.java:442)
+	at java.net.URLClassLoader.access$100(URLClassLoader.java:64)
+	at java.net.URLClassLoader$1.run(URLClassLoader.java:354)
+	at java.net.URLClassLoader$1.run(URLClassLoader.java:348)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:347)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:425)
+	at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:312)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:358)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:195)
+	at test.Main.main(Unknown Source)
 
-original G::<clinit>
-appended G::<clinit>
-original G::<init>
-G::sourceStaticField: 100
-G::redefinedSourceStaticField: 200
-G::patchStaticField: 200
+MethodStaticUseBoth:
+java.lang.ClassFormatError: Duplicate method name&signature in class file test/Main$MethodStaticUseBoth
+	at java.lang.ClassLoader.defineClass1(Native Method)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:803)
+	at java.security.SecureClassLoader.defineClass(SecureClassLoader.java:142)
+	at java.net.URLClassLoader.defineClass(URLClassLoader.java:442)
+	at java.net.URLClassLoader.access$100(URLClassLoader.java:64)
+	at java.net.URLClassLoader$1.run(URLClassLoader.java:354)
+	at java.net.URLClassLoader$1.run(URLClassLoader.java:348)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:347)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:425)
+	at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:312)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:358)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:195)
+	at test.Main.main(Unknown Source)
 
-added H::<clinit>
-original H::<init>
-H::patchStaticField: 200
+MethodPrivateUseBoth:
+java.lang.ClassFormatError: Duplicate method name&signature in class file test/Main$MethodPrivateUseBoth
+	at java.lang.ClassLoader.defineClass1(Native Method)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:803)
+	at java.security.SecureClassLoader.defineClass(SecureClassLoader.java:142)
+	at java.net.URLClassLoader.defineClass(URLClassLoader.java:442)
+	at java.net.URLClassLoader.access$100(URLClassLoader.java:64)
+	at java.net.URLClassLoader$1.run(URLClassLoader.java:354)
+	at java.net.URLClassLoader$1.run(URLClassLoader.java:348)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:347)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:425)
+	at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:312)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:358)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:195)
+	at test.Main.main(Unknown Source)
 
-Concrete1::interfaceMethod
-Concrete1::abstractMethod
-replaced Concrete1::method
-
-Concrete2::interfaceMethod
-Concrete2::abstractMethod
-replaced Concrete2::method
-
-Concrete3::interfaceMethod
-Concrete3::abstractMethod
-replaced Concrete3::method
-
-entering replaced CrossClassA::go (class test.Main$CrossClassA)
-original CrossClassA::go: filtered data for a1 (class test.Main$source_CrossClassA)
-original CrossClassA::help1 (class test.Main$source_CrossClassA)
-added CrossClassAHelper::help2(source_CrossClassA)
-original CrossClassA::go: filtered data for a2 (class test.Main$source_CrossClassA)
-original CrossClassA::help1 (class test.Main$source_CrossClassA)
-added CrossClassAHelper::help2(source_CrossClassA)
-exiting replaced CrossClassA::go
-
-entering wrapper CrossClassBPatcher::go (class test.Main$CrossClassB)
-original CrossClassB::go: data (class test.Main$CrossClassB)
-exiting wrapper CrossClassBPatcher::go
-
-replaced CrossClassCPatcher::<clinit> (class test.Main$CrossClassC)
-replaced CrossClassCPatcher::<init> (class test.Main$CrossClassC)
 --- end build/patched-dex2jar.jar ---
 
